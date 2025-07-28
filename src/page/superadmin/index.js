@@ -1,0 +1,8 @@
+export { default as SuperAdminDashboard } from './Dashboard'
+export { default as Users } from './Users'
+export { default as Regions } from './Regions'
+export { default as Organizations } from './Organizations'
+export { default as Cameras } from './Cameras'
+export { default as AddManager } from './AddManager'
+export { default as Settings } from './Settings'
+export { default as AdminManager } from './AdminManager'

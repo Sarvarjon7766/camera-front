@@ -1,122 +1,58 @@
-// src/App.jsx
-import React from 'react'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import "slick-carousel/slick/slick-theme.css"
-import "slick-carousel/slick/slick.css"
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ProtectedRoute from './components/ProtectedRoute'
+import Login from './page/Login'
+import Logout from './components/Logout'
+import Unauthorized from './page/Unauthorized'
 
-import Accomodate from './components/Accomodate.jsx'
-import About from './pages/About'
-import AdminDashboard from './pages/AdminDashboard.jsx'
-import Dashboard from './pages/Dashboard'
-import Home from './pages/Home'
-import LoginPage from './pages/LoginPage'
-import RegistrationPage from './pages/RegistrationPage.jsx'
-import Default from './components/Default.jsx'
+// Layouts
+import AdminLayout from './components/layout/AdminLayout'
+import OrganizationLayout from './components/layout/OrganizationHeadLayout'
+import RegionManagerLayout from './components/layout/RegionHeadLayout'
+import SuperAdminLayout from './components/layout/SuperAdminLayout'
 
-import {
-  AdminDashboardHome,
-  Answares,
-  Appellations,
-  Complaints,
-  Offers
-} from './pages/Admin/index.js'
-import {
-  ApplicationForm,
-  DashboardHome,
-  EducationalInformation,
-  GeneralInformation,
-  Leader,
-  MaritalStatus,
-  MyApplication,
-  Payment,
-  ResidentialInformation
-} from './pages/index.js'
+// Dashboards
+import AdminDashboard from './page/admin/Dashboard'
+import OrganizationDashboard from './page/organizationhead/Dashboard'
+import RegionManagerDashboard from './page/regionhead/Dashboard'
+import {SuperAdminDashboard,Regions,Users,Organizations,Cameras,AddManager,Settings,AdminManager} from './page/superadmin'
 
-import {AccountantDashboard,AccountantHome,GeneralVacancies,SituationsVacant,BusyVacancies} from './pages/accountant/index.js'
-import {OfficecenterDashboard} from './pages/officecenter'
-import {ResourcesDashboard} from './pages/resources'
-import {StudentapplicationDashboard} from './pages/studentapplication'
-
-import Profile from './components/Profile.jsx'
-import AdminProfile from './pages/Admin/AdminProfile.jsx'
-import Vacancies from './pages/Vacancies.jsx'
-
-const App = () => {
+function App() {
   return (
-    <Router>
-      <div>
-        <Routes>
-          {/* Public Pages */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/about-us" element={<About />} />
-          <Route path="/default" element={<Default />} />
+    <BrowserRouter>
+      <Routes>
+        {/* Login and Unauthorized */}
+        <Route path="/" element={<Login />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/logout" element={<Logout />} />
 
-          {/* Dashboard Routes */}
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<DashboardHome />} />
-            <Route path="my-applications" element={<MyApplication />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="payments" element={<Payment />} />
-            <Route path="general-info" element={<GeneralInformation />} />
-            <Route path="address" element={<ResidentialInformation />} />
-            <Route path="education" element={<EducationalInformation />} />
-            <Route path="family-status" element={<MaritalStatus />} />
-            <Route path="application" element={<ApplicationForm />} />
-            <Route path="ish-urinlari" element={<ApplicationForm />} />
-          </Route>
+        {/* SuperAdmin */}
+        <Route element={<ProtectedRoute role="superadmin"><SuperAdminLayout /></ProtectedRoute>}>
+          <Route path="/superadmin" element={<SuperAdminDashboard />} />
+          <Route path="/superadmin/regions" element={<Regions />} />
+          <Route path="/superadmin/organizations" element={<Organizations />} />
+          <Route path="/superadmin/users" element={<Users />} />
+          <Route path="/superadmin/cameras" element={<Cameras />} />
+          <Route path="/superadmin/add-manager" element={<AddManager />} />
+          <Route path="/superadmin/settings" element={<Settings />} />
+          <Route path="/superadmin/admin" element={<AdminManager />} />
+        </Route>
 
-          {/* Application Routes (e.g., different role or view) */}
-          <Route path="/application" element={<Dashboard />}>
-            <Route index element={<DashboardHome />} />
-            <Route path="leader" element={<Leader />} />
-            <Route path="payments" element={<Payment />} />
-            <Route path="general-info" element={<GeneralInformation />} />
-            <Route path="address" element={<ResidentialInformation />} />
-            <Route path="education" element={<EducationalInformation />} />
-            <Route path="family-status" element={<MaritalStatus />} />
-            <Route path="application" element={<ApplicationForm />} />
-          </Route>
-          {/* Application Routes (e.g., different role or view) */}
-          <Route path="/leader" element={<AdminDashboard />}>
-            <Route index element={<AdminDashboardHome />} />
-            <Route path="offers" element={<Offers />} />
-            <Route path="complaints" element={<Complaints />} />
-            <Route path="appellations" element={<Appellations />} />
-            <Route path="answares" element={<Answares />} />
-            <Route path="profile" element={<AdminProfile />} />
-          </Route>
-          <Route path="/accountant" element={<AccountantDashboard />}>
-            <Route index element={<AccountantHome />} />
-            <Route path="general-vacancies" element={<GeneralVacancies />} />
-            <Route path="vacancies" element={<SituationsVacant />} />
-            <Route path="busy-vacancies" element={<BusyVacancies />} />
-            <Route path="profile" element={<Profile />} />
-          </Route>
-          <Route path="/officecenter" element={<OfficecenterDashboard />}>
-            <Route index element={<AdminDashboardHome />} />
-            <Route path="applications" element={<Offers />} />
-            <Route path="answers" element={<Complaints />} />
-            <Route path="profile" element={<AdminProfile />} />
-          </Route>
-          <Route path="/resources" element={<ResourcesDashboard />}>
-            <Route index element={<AdminDashboardHome />} />
-            <Route path="vacancies" element={<Offers />} />
-            <Route path="applications" element={<Complaints />} />
-            <Route path="answers" element={<Appellations />} />
-            <Route path="profile" element={<AdminProfile />} />
-          </Route>
-          <Route path="/acceptance" element={<StudentapplicationDashboard />}>
-            <Route index element={<AdminDashboardHome />} />
-            <Route path="student-application" element={<Offers />} />
-            <Route path="answers" element={<Complaints />} />
-            <Route path="profile" element={<AdminProfile />} />
-          </Route>
-        </Routes>
-      </div>
-    </Router>
+        {/* Admin */}
+        <Route element={<ProtectedRoute role="admin"><AdminLayout /></ProtectedRoute>}>
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Route>
+
+        {/* Region Manager */}
+        <Route element={<ProtectedRoute role="region-manager"><RegionManagerLayout /></ProtectedRoute>}>
+          <Route path="/region-manager" element={<RegionManagerDashboard />} />
+        </Route>
+
+        {/* Organization Head */}
+        <Route element={<ProtectedRoute role="organization_head"><OrganizationLayout /></ProtectedRoute>}>
+          <Route path="/organization" element={<OrganizationDashboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
