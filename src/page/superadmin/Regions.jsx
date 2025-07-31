@@ -22,7 +22,7 @@ const Region = () => {
 		const fetchRegions = async () => {
 			try {
 				setIsLoading(true)
-				const res = await axios.get('http://localhost:5000/api/region/getAll')
+				const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/region/getAll`)
 				setRegions(res.data.data || [])
 			} catch (error) {
 				console.error('Serverdan regionlarni olishda xatolik:', error)
@@ -50,7 +50,7 @@ const Region = () => {
 				status: 'active'
 			}
 
-			const res = await axios.post('http://localhost:5000/api/region/register', newRegion)
+			const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/region/register`, newRegion)
 			if (res.data.success) {
 				setRegions(prev => [...prev, res.data.data])
 				setIsModalOpen(false)

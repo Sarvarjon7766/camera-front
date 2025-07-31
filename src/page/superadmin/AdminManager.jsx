@@ -117,9 +117,9 @@ const AdminManager = () => {
 		try {
 			let res
 			if (editMode) {
-				res = await axios.put(`http://localhost:5000/api/user/${currentAdminId}`, form)
+				res = await axios.put(`${import.meta.env.VITE_API_URL}/api/user/${currentAdminId}`, form)
 			} else {
-				res = await axios.post('http://localhost:5000/api/user/register', form)
+				res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/register`, form)
 			}
 
 			if (res.data.success) {
@@ -141,7 +141,7 @@ const AdminManager = () => {
 	const getAdmins = async () => {
 		setIsFetchingAdmins(true)
 		try {
-			const res = await axios.get('http://localhost:5000/api/user/getAdmins')
+			const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/getAdmins`)
 			if (res.data.success) {
 				const data = res.data.users || []
 				setAdmins(data)
@@ -163,7 +163,7 @@ const AdminManager = () => {
 	const handleDelete = async (id) => {
 		if (window.confirm('Haqiqatan ham bu adminni o\'chirmoqchimisiz?')) {
 			try {
-				const res = await axios.delete(`http://localhost:5000/api/user/${id}`)
+				const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/user/${id}`)
 				if (res.data.success) {
 					showMessage('Admin muvaffaqiyatli o\'chirildi!')
 					await getAdmins()

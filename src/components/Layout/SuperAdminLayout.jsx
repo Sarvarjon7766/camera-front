@@ -22,7 +22,7 @@ const SuperAdminLayout = () => {
         }
 
         // Token yaroqliligini tekshirish uchun API so'rovi
-        const response = await axios.get('http://localhost:5000/api/user/verify', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/verify`, {
           headers: {
             Authorization: `Bearer ${userData.token}`
           }

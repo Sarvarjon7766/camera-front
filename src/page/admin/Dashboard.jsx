@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 	const loadStats = async () => {
 		setLoading(prev => ({ ...prev, stats: true }))
 		try {
-			const res = await axios.get('http://localhost:5000/api/dashboard/stats')
+			const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/dashboard/stats`)
 			if (res.data.success) {
 				setStats(res.data.data)
 			}
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
 	const loadRegions = async () => {
 		setLoading(prev => ({ ...prev, regions: true }))
 		try {
-			const res = await axios.get('http://localhost:5000/api/region/getAll')
+			const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/region/getAll`)
 			if (res.data.success) {
 				setRegions(res.data.data)
 			}
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
 		setLoading(prev => ({ ...prev, organizations: true }))
 
 		try {
-			const res = await axios.get(`http://localhost:5000/api/organization/region-organization/${regionId}`)
+			const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/organization/region-organization/${regionId}`)
 			if (res.data.success) {
 				setOrganizations(res.data.data)
 			}
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
 		setStreamUrl(null) // Reset previous stream URL
 
 		try {
-			const res = await axios.post('http://localhost:5000/api/camera/start-stream', {
+			const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/camera/start-stream`, {
 				cameraId: camera._id,
 				regionId: selectedRegion,
 				organizationId: selectedOrganization,
@@ -108,7 +108,7 @@ const AdminDashboard = () => {
 		if (!selectedCamera || !selectedRegion || !selectedOrganization) return
 
 		try {
-			await axios.post('http://localhost:5000/api/camera/stop-stream', {
+			await axios.post(`${import.meta.env.VITE_API_URL}/api/camera/stop-stream`, {
 				cameraId: selectedCamera._id,
 				regionId: selectedRegion,
 				organizationId: selectedOrganization,
@@ -289,7 +289,7 @@ const AdminDashboard = () => {
 										<p>Stream yuklanmoqda...</p>
 									</div>
 								) : streamUrl ? (
-									<HlsPlayer src={`http://localhost:5000${streamUrl}`} />
+									<HlsPlayer src={`${import.meta.env.VITE_API_URL}${streamUrl}`} />
 								) : (
 									<div className="w-full h-full flex items-center justify-center text-white">
 										<p>Stream mavjud emas</p>

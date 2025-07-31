@@ -34,8 +34,8 @@ const Organizations = () => {
 			try {
 				setIsLoading(true)
 				const [regionsRes, orgsRes] = await Promise.all([
-					axios.get('http://localhost:5000/api/region/getAll'),
-					axios.get('http://localhost:5000/api/organization/getAll'),
+					axios.get(`${import.meta.env.VITE_API_URL}/api/region/getAll`),
+					axios.get(`${import.meta.env.VITE_API_URL}/api/organization/getAll`),
 				])
 
 				const orgsData = orgsRes.data.data || []
@@ -83,7 +83,7 @@ const Organizations = () => {
 					role: 'organization_head'
 				}
 			}
-			const res = await axios.post('http://localhost:5000/api/organization/register', newOrg)
+			const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/organization/register`, newOrg)
 			if (res.data.success) {
 				setOrganizations(prev => [...prev, res.data.data])
 				setIsModalOpen(false)
@@ -100,7 +100,7 @@ const Organizations = () => {
 					}
 				})
 				// Refresh data after creation
-				const orgsRes = await axios.get('http://localhost:5000/api/organization/getAll')
+				const orgsRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/organization/getAll`)
 				const orgsData = orgsRes.data.data || []
 				setOrganizations(orgsData)
 				setStats(prev => ({

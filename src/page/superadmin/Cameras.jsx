@@ -37,8 +37,8 @@ const Cameras = () => {
 		try {
 			setIsLoading(true)
 			const [camerasRes, orgsRes] = await Promise.all([
-				axios.get('http://localhost:5000/api/camera/getAll'),
-				axios.get('http://localhost:5000/api/organization/getAll')
+				axios.get(`${import.meta.env.VITE_API_URL}/api/camera/getAll`),
+				axios.get(`${import.meta.env.VITE_API_URL}/api/organization/getAll`)
 			])
 
 
@@ -73,7 +73,7 @@ const Cameras = () => {
 
 	const handleCreate = async () => {
 		try {
-			const res = await axios.post('http://localhost:5000/api/camera/register', form)
+			const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/camera/register`, form)
 			if (res.data.success) {
 				fetchData()
 				setIsModalOpen(false)

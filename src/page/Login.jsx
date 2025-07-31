@@ -24,7 +24,7 @@ const Login = () => {
 
 		try {
 			// API ga so'rov yuborish
-			const response = await axios.post('http://localhost:5000/api/user/auth', {
+			const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/auth`, {
 				username,
 				password
 			})
