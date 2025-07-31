@@ -88,7 +88,7 @@ const SuperAdminLayout = () => {
       {/* ✅ Mobile Overlay */}
       {isMobile && isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-20"
+          className="fixed inset-0  z-20"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
