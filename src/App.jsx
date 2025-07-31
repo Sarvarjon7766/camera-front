@@ -6,15 +6,15 @@ import Unauthorized from './page/Unauthorized'
 
 // Layouts
 import AdminLayout from './components/Layout/AdminLayout'
-import OrganizationLayout from './components/layout/OrganizationHeadLayout'
-import RegionManagerLayout from './components/layout/RegionHeadLayout'
-import SuperAdminLayout from './components/layout/SuperAdminLayout'
+import OrganizationLayout from './components/Layout/OrganizationHeadLayout'
+import RegionManagerLayout from './components/Layout/RegionHeadLayout'
+import SuperAdminLayout from './components/Layout/SuperAdminLayout'
 
 // Dashboards
 import { AdminCameras, AdminDashboard } from './page/admin/index'
 import OrganizationDashboard from './page/organizationhead/Dashboard'
 import RegionManagerDashboard from './page/regionhead/Dashboard'
-import { AddManager, AdminManager, Cameras, Organizations, Regions, Settings, SuperAdminDashboard, Users } from './page/superadmin'
+import { AddManager, AdminManager, Cameras, Organizations, Regions, Settings, SuperAdminDashboard, Users } from './page/superadmin/index'
 
 function App() {
   return (
