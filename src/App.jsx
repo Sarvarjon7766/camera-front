@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Logout from './components/Logout'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './page/Login'
-import Logout from './components/Logout'
 import Unauthorized from './page/Unauthorized'
 
 // Layouts
@@ -11,10 +11,10 @@ import RegionManagerLayout from './components/layout/RegionHeadLayout'
 import SuperAdminLayout from './components/layout/SuperAdminLayout'
 
 // Dashboards
-import AdminDashboard from './page/admin/Dashboard'
+import { AdminCameras, AdminDashboard } from './page/admin/index'
 import OrganizationDashboard from './page/organizationhead/Dashboard'
 import RegionManagerDashboard from './page/regionhead/Dashboard'
-import {SuperAdminDashboard,Regions,Users,Organizations,Cameras,AddManager,Settings,AdminManager} from './page/superadmin'
+import { AddManager, AdminManager, Cameras, Organizations, Regions, Settings, SuperAdminDashboard, Users } from './page/superadmin'
 
 function App() {
   return (
@@ -40,10 +40,12 @@ function App() {
         {/* Admin */}
         <Route element={<ProtectedRoute role="admin"><AdminLayout /></ProtectedRoute>}>
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/cameras" element={<AdminCameras />} />
+          <Route path="/admin/settings" element={<AdminCameras />} />
         </Route>
 
         {/* Region Manager */}
-        <Route element={<ProtectedRoute role="region-manager"><RegionManagerLayout /></ProtectedRoute>}>
+        <Route element={<ProtectedRoute role="region_head"><RegionManagerLayout /></ProtectedRoute>}>
           <Route path="/region-manager" element={<RegionManagerDashboard />} />
         </Route>
 

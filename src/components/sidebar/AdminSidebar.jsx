@@ -1,12 +1,13 @@
-import { LayoutDashboard, Settings, Users } from 'lucide-react'
+import { LayoutDashboard, LogOut, Settings, Users, Video } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
 const AdminSidebar = () => {
 	const location = useLocation()
 	const navItems = [
 		{ path: "/admin", icon: LayoutDashboard, label: "Dashboard" },
-		{ path: "/admin/users", icon: Users, label: "Users" },
-		{ path: "/admin/settings", icon: Settings, label: "Settings" }
+		{ path: "/admin/cameras", icon: Video, label: "Kameralar" },
+		{ path: "/admin/settings", icon: Settings, label: "Settings" },
+		{ path: "/logout", icon: LogOut, label: "Chiqish" }
 	]
 
 	return (
