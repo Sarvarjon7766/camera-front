@@ -5,7 +5,7 @@ import Login from './page/Login'
 import Unauthorized from './page/Unauthorized'
 
 // Layouts
-import AdminLayout from './components/layout/AdminLayout'
+import AdminLayout from './components/Layout/AdminLayout'
 import OrganizationLayout from './components/layout/OrganizationHeadLayout'
 import RegionManagerLayout from './components/layout/RegionHeadLayout'
 import SuperAdminLayout from './components/layout/SuperAdminLayout'
